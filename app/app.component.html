@@ -6,12 +6,4 @@
         <span class="badge">{{p.id}}</span> {{p.name}}
     </li>
 </ul>
-
-<div *ngIf="selectedProduct">
-    <h2>{{selectedProduct.name}} details!</h2>
-    <div><label>id: </label>{{selectedProduct.id}}</div>
-    <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedProduct.name" placeholder="Enter Product Name" />
-    </div>
-</div>
+<my-product-detail [product]="selectedProduct"></my-product-detail>

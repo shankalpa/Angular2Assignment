@@ -1,33 +1,34 @@
 ﻿import { Component } from '@angular/core';
-export class Product {
-    id: number;
-    name: string;
-}
+import { OnInit } from '@angular/core';
+import { Product } from './product' 
+import { ProductDetailComponent } from './product-detail.component';
+import { ProductService } from './product.service';
+
 @Component({
     selector: 'my-app',
     templateUrl: './app/app.component.html',
-    styleUrls: ['./app/app.component.css']
+    styleUrls: ['./app/app.component.css'],
+    providers: [ProductService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = "Products";
-    products = PRODUCTS;
+    products: Product[];
     selectedProduct: Product;
+
+    ngOnInit(): void {
+        this.getProducts();
+    }
+
+    constructor(private productService: ProductService) { }
+
+    getProducts(): void {
+        //this.products = this.productService.getProducts();
+        this.productService.getProducts().then(products => this.products = products);
+    }
+     
     onSelect(product: Product): void {
         this.selectedProduct = product;
     }
-
 }
 
-const PRODUCTS: Product[] = [
-    { id: 11, name: 'Milk' },
-    { id: 12, name: 'Bread' },
-    { id: 13, name: 'Cereal' },
-    { id: 14, name: 'Jam' },
-    { id: 15, name: 'Butter' },
-    { id: 16, name: 'Oatmeal' },
-    { id: 17, name: 'Eggs' },
-    { id: 18, name: 'Applie' },
-    { id: 19, name: 'Orange' },
-    { id: 20, name: 'Bacon' }
-];
 
