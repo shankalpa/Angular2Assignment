@@ -13,6 +13,11 @@ export class ProductService {
         return Promise.resolve(PRODUCTS);
     }
 
+    getProduct(id: number): Promise<Product> {
+        return this.getProducts().
+            then(products => products.find(product => product.id == id));
+    }
+
     getProductsSlowly(): Promise<Product[]> {
         return new Promise<Product[]>(resolve =>
             setTimeout(resolve, 2000))

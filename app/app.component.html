@@ -1,9 +1,7 @@
 ﻿<h1>{{title}}</h1>
+<nav>
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/products" routerLinkActive="active">Products</a>
+</nav>
+<router-outlet></router-outlet>
 
-<ul class="products">
-    <li *ngFor="let p of products" (click)="onSelect(p)"
-       [class.selected] ="p === selectedProduct" >
-        <span class="badge">{{p.id}}</span> {{p.name}}
-    </li>
-</ul>
-<my-product-detail [product]="selectedProduct"></my-product-detail>

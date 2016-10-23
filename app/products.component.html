@@ -1,0 +1,11 @@
+﻿<ul class="products">
+    <li *ngFor="let p of products" (click)="onSelect(p)"
+        [class.selected]="p === selectedProduct">
+        <span class="badge">{{p.id}}</span> {{p.name}}
+    </li>
+</ul>
+<!--<my-product-detail [product]="selectedProduct"></my-product-detail>-->
+<div *ngIf="selectedProduct">
+    <h2>{{selectedProduct.name | uppercase}} is selected.</h2>
+    <button (click)="gotoDetail()">View Detail</button>
+</div>
