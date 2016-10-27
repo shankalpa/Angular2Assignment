@@ -31,6 +31,29 @@ var ProductsComponent = (function () {
     ProductsComponent.prototype.gotoDetail = function () {
         this.router.navigate(['/detail', this.selectedProduct.id]);
     };
+    ProductsComponent.prototype.add = function (name) {
+        var _this = this;
+        name = name.trim();
+        if (!name) {
+            return;
+        }
+        this.productService.create(name)
+            .then(function (product) {
+            _this.products.push(product);
+            _this.selectedProduct = null;
+        });
+    };
+    ProductsComponent.prototype.delete = function (product) {
+        var _this = this;
+        this.productService
+            .delete(product.id)
+            .then(function () {
+            _this.products = _this.products.filter(function (p) { return p !== product; });
+            if (_this.selectedProduct === product) {
+                _this.selectedProduct = null;
+            }
+        });
+    };
     ProductsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

@@ -36,6 +36,27 @@ export class ProductsComponent implements OnInit {
     gotoDetail(): void {
         this.router.navigate(['/detail', this.selectedProduct.id]);
     }
+
+    add(name: string): void {
+        name = name.trim();
+        if (!name) { return; }
+        this.productService.create(name)
+            .then(product => {
+                this.products.push(product);
+                this.selectedProduct = null;
+            })
+    }
+
+    delete(product: Product): void {
+        this.productService
+            .delete(product.id)
+            .then(() => {
+                this.products = this.products.filter(p => p !== product);
+                if (this.selectedProduct === product) {
+                    this.selectedProduct = null;
+                }
+            });
+    }
 }
 
 

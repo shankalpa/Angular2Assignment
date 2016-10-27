@@ -12,11 +12,16 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
+require('./rxjs-extensions');
 var product_detail_component_1 = require('./product-detail.component');
 var products_component_1 = require('./products.component');
 var product_service_1 = require('./product.service');
 var dashboard_component_1 = require('./dashboard.component');
+var product_search_component_1 = require('./product-search.component');
 var app_routing_module_1 = require('./app-routing.module');
+var http_1 = require('@angular/http');
+var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
+var in_memory_data_service_1 = require('./in-memory-data.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,14 +29,17 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                http_1.HttpModule,
                 forms_1.FormsModule,
-                app_routing_module_1.AppRoutingModule
+                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
+                app_routing_module_1.AppRoutingModule,
             ],
             declarations: [
                 app_component_1.AppComponent,
                 product_detail_component_1.ProductDetailComponent,
                 products_component_1.ProductsComponent,
-                dashboard_component_1.DashBoardComponent
+                dashboard_component_1.DashBoardComponent,
+                product_search_component_1.ProductSearchComponent
             ],
             providers: [product_service_1.ProductService],
             bootstrap: [app_component_1.AppComponent]

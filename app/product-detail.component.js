@@ -31,6 +31,10 @@ var ProductDetailComponent = (function () {
     ProductDetailComponent.prototype.goBack = function () {
         this.location.back();
     };
+    ProductDetailComponent.prototype.save = function () {
+        var _this = this;
+        this.productService.update(this.product).then(function () { return _this.goBack(); });
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', product_1.Product)
